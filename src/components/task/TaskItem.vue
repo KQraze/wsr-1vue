@@ -42,7 +42,6 @@ const inEditing = ref(props.edit === 'edit');
 const inCreating = ref(props.edit === 'create');
 const inReturn = ref(false);
 
-
 const model = reactive({
   title: props.title,
   description: props.description,
@@ -98,7 +97,7 @@ const startDrag = (event) => emit('start-drag', event)
       <span v-if="isExpired">Задача просрочена</span>
       <span v-else>Задача выполнена вовремя</span>
     </p>
-    <div v-if="status === 'inWork' && causes.length">
+    <div v-if="['inWork', 'test'].includes(status) && causes.length">
       Причина возврата:
       <ol>
         <li v-for="cause in causes">{{ cause }}</li>

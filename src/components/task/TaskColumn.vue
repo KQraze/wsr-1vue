@@ -39,14 +39,13 @@ const deleteTask = (index) => store.dispatch('deleteTask', { index, from: props.
 const draggingElem = (event, index) => {
   event.dataTransfer.dropEffect = 'move';
   event.dataTransfer.effectAllowed = 'move';
-  console.log(index, props.columnName)
   event.dataTransfer.setData('task-index', index);
   event.dataTransfer.setData('from', props.columnName);
 }
 
 const onDrop = (event) => {
   const [taskIndex, from] = [event.dataTransfer.getData('task-index'), event.dataTransfer.getData('from')];
-  console.log(taskIndex, from)
+  if (props.columnName === 'planed') return;
   store.dispatch('moveTask', { index: taskIndex, from, to: props.columnName })
 }
 </script>
